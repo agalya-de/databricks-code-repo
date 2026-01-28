@@ -21,8 +21,8 @@
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC drop table lakehousecat.deltadb.customer_txn;
-# MAGIC drop table lakehousecat.deltadb.customer_txn_part;
+# MAGIC --drop table lakehousecat.deltadb.customer_txn;
+# MAGIC --drop table lakehousecat.deltadb.customer_txn_part;
 # MAGIC drop table lakehousecat.deltadb.drugstbl;
 # MAGIC drop table lakehousecat.deltadb.drugstbl_merge;
 # MAGIC drop table lakehousecat.deltadb.drugstbl_partitioned;
@@ -284,7 +284,7 @@ print(spark.read.table("drugstbl_merge").count())
 
 # MAGIC %sql
 # MAGIC --select * from (select * from deltadb.drugs version as of 2) where uniqueid=163740;
-# MAGIC SELECT count(1) FROM drugstbl_merge VERSION AS OF 3;
+# MAGIC SELECT count(1) FROM drugstbl_merge VERSION AS OF 1;
 
 # COMMAND ----------
 
@@ -295,7 +295,7 @@ print(spark.read.table("drugstbl_merge").count())
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-25T18:25:04.000+00:00';
+# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-28T06:58:48.000+00:00';
 
 # COMMAND ----------
 
@@ -312,7 +312,7 @@ print(spark.read.table("drugstbl_merge").count())
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-26T17:04:07.001+00:00';
+# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-28T06:58:48.000+00:00';
 
 # COMMAND ----------
 
@@ -328,7 +328,7 @@ print(spark.read.table("drugstbl_merge").count())
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-26T16:55:40.000+00:00';
+# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-28T06:58:48.000+00:00';
 
 # COMMAND ----------
 
@@ -346,7 +346,7 @@ spark.sql("VACUUM drugstbl_merge RETAIN 168 HOURS")
 # MAGIC **Delta Lake uses ACID transactions under the hood via a transaction log.**
 # MAGIC | ACID        | In Databricks         |
 # MAGIC | ----------- | --------------------- |
-# MAGIC | Atomicity   | Individual Transactions |
+# MAGIC | Atomicity   | All or nothing or Individual Transactions |
 # MAGIC | Consistency | Schema + constraints  |
 # MAGIC | Isolation   | Snapshot isolation    |
 # MAGIC | Durability  | Transaction log       |
