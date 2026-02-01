@@ -295,7 +295,7 @@ print(spark.read.table("drugstbl_merge").count())
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-28T06:58:48.000+00:00';
+# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-02-01T01:59:24.000+00:00';
 
 # COMMAND ----------
 
@@ -312,7 +312,7 @@ print(spark.read.table("drugstbl_merge").count())
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-28T06:58:48.000+00:00';
+# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-02-01T01:59:24.000+00:00';
 
 # COMMAND ----------
 
@@ -328,7 +328,7 @@ print(spark.read.table("drugstbl_merge").count())
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-01-28T06:58:48.000+00:00';
+# MAGIC SELECT count(1) FROM drugstbl_merge TIMESTAMP AS OF '2026-02-01T01:59:24.000+00:00';
 
 # COMMAND ----------
 
@@ -354,6 +354,12 @@ spark.sql("VACUUM drugstbl_merge RETAIN 168 HOURS")
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC drop table acid_demo_txn;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
 # MAGIC CREATE TABLE acid_demo_txn (
 # MAGIC   id INT,
 # MAGIC   amount INT
